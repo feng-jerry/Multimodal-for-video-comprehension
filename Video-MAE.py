@@ -55,12 +55,13 @@ def process_windows(windows, processor, model):
 
 folder_path = '/Volumes/T7T/HW/CSCI535/project/Aff-Wild2/video'
 file_names = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
+os.mkdirs('features', exist_ok=True)
 
 for i, file in enumerate(file_names):
     print('Starting generating feature for the first video: ', file)
     frames = extract_and_pad_frames(folder_path + '/' + file)
     windows = create_overlapping_windows(frames)
     feature = process_windows(windows, processor, model)
-    torch.save(feature, f'features/{file}.pt')
+   torch.save(feature, f'features/{file.split('.')[0]}.pt')
 
 
