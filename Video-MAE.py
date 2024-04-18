@@ -58,7 +58,7 @@ file_names = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(
 os.mkdirs('features', exist_ok=True)
 
 for i, file in enumerate(file_names):
-    print('Starting generating feature for the first video: ', file)
+    print(f'Starting generating feature for the {i}th video: ', file)
     frames = extract_and_pad_frames(folder_path + '/' + file)
     windows = create_overlapping_windows(frames)
     feature = process_windows(windows, processor, model)
