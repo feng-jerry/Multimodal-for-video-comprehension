@@ -1,4 +1,5 @@
 # Usage: python hubert.py
+# the scrip will read videos from VIDEO_FOLDER_PATH, and save features in FEATURE_PATH
 
 import os
 import torch
