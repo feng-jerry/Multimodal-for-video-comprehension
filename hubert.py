@@ -1,3 +1,5 @@
+# Usage: python hubert.py
+
 import os
 import torch
 from transformers import Wav2Vec2Processor, HubertModel
@@ -7,6 +9,7 @@ from moviepy.editor import VideoFileClip, vfx
 VIDEO_FOLDER_PATH = "./video"
 FEATURE_PATH = "./features"
 CHUNK_SIZE = 60 * 16000  # 1 second of audio at 16kHz, 60 seconds
+# You can modify chunk size to adjust to your RAM
 
 video_files = []
 
@@ -28,6 +31,9 @@ def load_audio(video_path):
 
 
 for video in video_files:
+    if os.path.exists(os.path.join(FEATURE_PATH, os.path.splitext(video)[0] + ".pt")):
+        continue
+    print("Processing:", video)
     frames = load_audio(video)
     audio_input, sample_rate = torchaudio.load("output.wav")
 
