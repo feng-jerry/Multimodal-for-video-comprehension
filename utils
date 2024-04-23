@@ -1,0 +1,5 @@
+def loglinspace(rate, step, end=None):
+    t = 0
+    while end is None or t <= end:
+        yield t
+        t = int(t + 1 + step * (1 - math.exp(-t * rate / step)))
